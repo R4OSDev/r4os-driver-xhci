@@ -1,16 +1,22 @@
 ﻿# XHCI.R4D
 
-`XHCI.R4D` is an independent R4OS driver implemented in Zig.
+`XHCI.R4D` is the loadable activation owner for the canonical
+kernel-resident R4OS xHCI backend.
 
 ## Package
 
-- Version: `0.1.1`
+- Version: `0.1.2`
 - Image target: `/R4OS/DRIVERS/XHCI.R4D`
 - Image scope: `slim`
 - Canonical project manifest: `module.R4MF`
 
 The manifest is the single source of truth for the artifact, imports, image
 target, and package metadata.
+
+The module intentionally contains no second PCI, MMIO, DMA, ring, transfer or
+interrupt implementation. DriverApi v21 binds its R4D owner identity to the
+single kernel backend; unload succeeds only after that backend has halted and
+released its controller resources.
 
 ## Build
 

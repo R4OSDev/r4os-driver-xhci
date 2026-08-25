@@ -1,22 +1,26 @@
 ﻿XHCI.R4D
 ========
 
-Projektstruktur seit 0.51.22
---------------------------------
+XHCI.R4D ist der ladbare Aktivierungsbesitzer des einzigen kanonischen
+xHCI-Hostpfads. DriverApi v21 bindet die Owner-ID des Moduls an den
+kernelresidenten PCI-/MMIO-/DMA-, Ring-, Transfer-, Event-, Hotplug- und
+Shutdownpfad. Das Modul selbst probt und initialisiert den Controller nicht
+erneut.
 
-Dieses Verzeichnis ist ein eigenstaendiges R4OS-SDK-Projekt fuer XHCI.R4D.
+UsbHostController v2 dispatcht Port-, Control-, Bulk-, Interrupt-, Reset-,
+Clear-Halt- und Polloperationen. Der Status weist Capabilityflags,
+Queue-Tiefe, maximale Transfergroesse, aktive Transfers, Completions, IRQs,
+Pollfallbacks und Abbrueche aus. Schlaegt das sichere Anhalten des Controllers
+fehl, vetoisiert der Backendabschluss den Modul-Unload und behaelt seine
+Ressourcen.
 
-Build:
+Build unter Windows:
 
-    cd Code\System\Driver\XHCI
-    ..\..\..\DevTools\Zig\zig.exe build
+    Build.bat
 
-Artefakt:
+Build unter Linux:
 
-    zig-out\XHCI.R4D
+    ./Build.sh
 
-Manifest:
-
-    module.R4MF
-
-Image-Zielpfad: C:\R4OS\DRIVERS\XHCI.R4D
+Das Artefakt wird gemaess `module.R4MF` als `XHCI.R4D` fuer
+`C:\R4OS\DRIVERS\XHCI.R4D` gebaut.
