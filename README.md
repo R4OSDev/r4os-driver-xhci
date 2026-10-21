@@ -15,8 +15,12 @@ target, and package metadata.
 
 The module intentionally contains no second PCI, MMIO, DMA, ring, transfer or
 interrupt implementation. DriverApi v21 binds its R4D owner identity to the
-single kernel backend; unload succeeds only after that backend has halted and
-released its controller resources.
+kernel backend family. Every matching PCI function has an independent resident
+controller instance, IRQ/worker, DMA storage and device generations. Family
+unload succeeds only after each instance has acknowledged its own resource
+cleanup; an uncertain instance retains its resources. PCI diagnosis identifies
+the exact registered function. This activation artifact and USB-v2 ABI remain
+unchanged by the multi-controller and wait/HID/DMA changes.
 
 ## Build
 

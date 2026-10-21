@@ -27,6 +27,15 @@ die Freigabe weiterhin. HID und MSC koennen verschiedene Controller nutzen.
 Vertrag und gemeinsame Belege: Docs/Core/KernelRustUsb.txt und Usb086.json
 im projektweiten Docs-Repository.
 
+Kernel0.1.378-.381 ergaenzen residente genaue Completion-Warteplaetze mit
+urspruenglicher Deadline, generationengebundene HID-Weckung und bedarfsgerechte
+Interrupt-/Bulk-DMA-Gruppen. Nach erfolgreichem Instanzabbau erreicht der
+Klassen-Topologiehook HID und MSC ausserhalb des Controllerowners. Nicht
+bestaetigte Hardwarefreigaben bleiben gehalten. Das Aktivierungsartefakt und
+seine Modulversion aendern sich dadurch nicht. Recovery uebernimmt die fuer
+seinen eingefrorenen Zig-Pfad relevanten Vertraege semantisch; eigene
+Provenienz und qualifizierte Grenzen stehen im gemeinsamen USB-Fachbeleg.
+
 Build unter Windows:
 
     Build.bat
