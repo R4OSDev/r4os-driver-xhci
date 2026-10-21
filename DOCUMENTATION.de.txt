@@ -14,6 +14,16 @@ Pollfallbacks und Abbrueche aus. Schlaegt das sichere Anhalten des Controllers
 fehl, vetoisiert der Backendabschluss den Modul-Unload und behaelt seine
 Ressourcen.
 
+Seit Kernel 0.1.376 bindet der native Backendcode jede vorbereitete
+PCI-Funktion an einen eigenen residenten Instanzkontext. Die Registrierung
+verwendet einen eindeutigen BDF-Namen und eine nicht wiederverwendete ID;
+die oeffentliche USB-v2-ABI und dieses Aktivierungsartefakt bleiben gleich.
+Ohne Hardware wird wie bisher ein nicht verfuegbarer Backendstatus
+registriert. Release 0.86.25 startet zunaechst nur den ersten Controller;
+weitere erkannte Funktionen erscheinen korrekt als uninitialisiert.
+Vertrag und gemeinsame Belege: Docs/Core/KernelRustUsb.txt und Usb086.json
+im projektweiten Docs-Repository.
+
 Build unter Windows:
 
     Build.bat
