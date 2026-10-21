@@ -19,8 +19,11 @@ PCI-Funktion an einen eigenen residenten Instanzkontext. Die Registrierung
 verwendet einen eindeutigen BDF-Namen und eine nicht wiederverwendete ID;
 die oeffentliche USB-v2-ABI und dieses Aktivierungsartefakt bleiben gleich.
 Ohne Hardware wird wie bisher ein nicht verfuegbarer Backendstatus
-registriert. Release 0.86.25 startet zunaechst nur den ersten Controller;
-weitere erkannte Funktionen erscheinen korrekt als uninitialisiert.
+registriert. Seit Release 0.86.26 / Kernel 0.1.377 werden alle passenden
+PCI-Funktionen unabhaengig aktiviert. Worker, IRQ-/DMA-Ressourcen und
+Geraetegenerationen gehoeren ihrer konkreten Instanz. Der Familienname XHCI
+meldet alle eigenen Instanzen ab; aktive/ungewisse Ressourcen vetoisieren
+die Freigabe weiterhin. HID und MSC koennen verschiedene Controller nutzen.
 Vertrag und gemeinsame Belege: Docs/Core/KernelRustUsb.txt und Usb086.json
 im projektweiten Docs-Repository.
 
