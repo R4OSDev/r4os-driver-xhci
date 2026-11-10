@@ -2,7 +2,7 @@
 ========
 
 XHCI.R4D ist der ladbare Aktivierungsbesitzer des einzigen kanonischen
-xHCI-Hostpfads. DriverApi v21 bindet die Owner-ID des Moduls an den
+xHCI-Hostpfads. DriverInit2/R4DEV:Query2:2 bindet die Owner-ID des Moduls an den
 kernelresidenten PCI-/MMIO-/DMA-, Ring-, Transfer-, Event-, Hotplug- und
 Shutdownpfad. Das Modul selbst probt und initialisiert den Controller nicht
 erneut.

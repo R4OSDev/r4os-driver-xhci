@@ -5,10 +5,16 @@ kernel-resident R4OS xHCI backend.
 
 ## Package
 
-- Version: `0.1.2`
+- Version: `0.1.3`
 - Image target: `/R4OS/DRIVERS/XHCI.R4D`
 - Image scope: `slim`
 - Canonical project manifest: `module.R4MF`
+
+The module uses `R4DEV:Query2:2` / `DriverInit2`. Its actual activation and
+unregister callbacks must both be present before activation. A duplicate
+Init is rejected; a failed unregister retains the original API and active
+owner until a later confirmed Shutdown. `Build.sh test` / `Build.bat test`
+executes this owner boundary without granting the host access to USB hardware.
 
 The manifest is the single source of truth for the artifact, imports, image
 target, and package metadata.

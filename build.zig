@@ -10,4 +10,8 @@ pub fn build(b: *std.Build) void {
     const sdk_dep = b.dependencyFromBuildZig(sdk_build, .{});
     const sdk = sdk_build.sdk(b, sdk_dep, .{});
     _ = sdk.addR4MF(b.path("module.R4MF"));
+    const fixture = b.createModule(.{ .root_source_file = b.path("src/main.zig"), .target = b.graph.host, .optimize = .Debug });
+    fixture.addImport("r4os", sdk.createR4osModule(b.graph.host, .Debug));
+    const tests = b.addRunArtifact(b.addTest(.{ .root_module = fixture }));
+    b.step("test", "Check the activation owner's exact Init/Shutdown acknowledgements").dependOn(&tests.step);
 }
