@@ -4,7 +4,7 @@ var driver_api: ?*const r4os.r4dev.DriverApi2 = null;
 var activated = false;
 
 comptime {
-    if (!@import("builtin").is_test) asm (r4os.r4dev.driverEntriesAsm("xhci_init", "xhci_shutdown"));
+    if (!@import("builtin").is_test) asm (r4os.technical2.driverEntriesAsm("xhci_init", "xhci_shutdown"));
 }
 
 // XHCI.R4D is deliberately a thin activation owner. The kernel backend is
